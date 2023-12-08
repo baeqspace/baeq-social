@@ -72,7 +72,7 @@ app.use('/api-social', GroupRouter)
 app.use('/api-social/photos', express.static('photos'))
 app.use('/api-social/videos', express.static('videos'))
 app.use('/api-social/music', express.static('music'))
-app.use('/baeq-social', express.static('../client/baeq-social-frontend/dist'))
+app.use('/baeq-social', express.static('../client/dist'))
 
 //app.set('socketio', io)
 
