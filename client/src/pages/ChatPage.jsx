@@ -46,7 +46,8 @@ export function ChatPage() {
     }, [])
 
     useEffect(() => {
-        const newSocket = io(`${import.meta.env.VITE_API_URL}/socketio`.replace('/api-social', ''))
+        const newSocket = io(`${import.meta.env.VITE_API_URL}`.replace('/api-social', ''), {path: '/api-social/socketio/'})
+        console.log(newSocket)
         newSocket.emit('join-room', id, localStorage.getItem('token'))
         newSocket.on('receive-message', (message) => {
             console.log('received a message')
