@@ -42,10 +42,16 @@ export function FriendsPage({ groups }) {
         if (authUser?.friendsWith?.length && !groups) {
             getFriendsNames()
         }
-        if (authUser?.groupsIn && groups) {
+        if (authUser?.groupsIn?.length && groups) {
             getGroups()
         }
     }, [authUser?.friendsWith, pathname])
+
+    useEffect(()=>{
+        if (!authUser?.friendsWith?.length || !authUser?.groupsIn?.length) {
+            setFriends([])
+        }
+    },[pathname])
 
     async function getPageName() {
         const data = (await UserService.getUsersNames({ids: [id]}))[0]
@@ -63,7 +69,7 @@ export function FriendsPage({ groups }) {
     return (
         <div>
             <h1 className="page-header" style={{display: 'inline-block'}}>{groups ? (isMine ? 'Мои группы' : `Группы ${pageName}`) : (isMine ? 'Мои друзья' : `Друзья ${pageName}`)}</h1>
-            <Link to={'/baeq-social' + groups ? '/allGroups' : '/allFriends'}><h1 className="all-photos">{groups ? 'Все группы' : 'Все люди'}</h1></Link>
+            <Link to={'/baeq-social' + (groups ? '/allGroups' : '/allFriends')}><h1 className="all-photos">{groups ? 'Все группы' : 'Все люди'}</h1></Link>
             {groups && isMine && <button onClick={() => setModalVis(true)} className="chats-add">+</button>}
             <div className="friends-page-container">
                 {!friends.length && (groups ? <div className="no-friends">Групп нет</div> : <div className="no-friends">Друзей нет</div>)}

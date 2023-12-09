@@ -13,6 +13,7 @@ import jwt from 'jsonwebtoken'
 import queryDB from "./utils/queryDB.js"
 import bodyParser from "body-parser"
 import 'dotenv/config'
+import path from 'path'
 
 
 
@@ -75,6 +76,10 @@ app.use('/api-social/music', express.static('music'))
 app.use('/baeq-social', express.static('../client/dist'))
 
 //app.set('socketio', io)
+
+app.get('/baeq-social/*', (req, res) => {
+    res.sendFile(path.join(path.resolve(), '../client/dist/index.html'))
+})
 
 
 httpServer.listen(PORT, () => {

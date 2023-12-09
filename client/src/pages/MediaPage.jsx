@@ -118,7 +118,7 @@ export function MediaPage({type}) {
                 })}
             </div>
             <Routes>
-                <Route path={`${type}/:mediaId`} element={<MediaModal type={type} addToMyMedia={addToMyMedia} media={userMedia} back={`/${type}/${id}`}/>}/>
+                <Route path={`${type}/:mediaId`} element={<MediaModal type={type} addToMyMedia={addToMyMedia} media={userMedia} back={`/baeq-social/${type}/${id}`}/>}/>
             </Routes>
         </div>
     )
