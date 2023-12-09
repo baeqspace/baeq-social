@@ -21,6 +21,7 @@ const app = express()
 const PORT = 3000
 const httpServer = http.createServer(app)
 const io = new Server(httpServer, {
+    path: '/api-social/socketio/',
     cors: {
         origin: [process.env.FRONTEND_URL]
     }
